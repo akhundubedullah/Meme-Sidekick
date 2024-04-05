@@ -13,7 +13,6 @@ meme_templates = [
     "Aeyin ye kiya howa? [text]", 
     "Kiya mast joke mara re! [text]",
     "Chup re halkat! [text]",
-    "Sahi pakde hain! [text]", 
     # English Templates
     "Nobody: [Silence] / [text]]", 
     "[Common phrase] / Me, taking it literally: [text]" 
