@@ -20,7 +20,14 @@ meme_templates = [
     "Me as a programmer: [Expectation] / Me as a programmer: [Funny reality]"  
 ] 
 
-
 chosen_template = random.choice(meme_templates)
 final_meme = chosen_template.replace("[text]", sentence)  # Simple insertion 
 print(final_meme)
+
+
+# Analysis
+num_words = len(sentence.split())  # Count the words
+has_exclamation = "!" in sentence   # Detect exclamation points
+print("Number of words:", num_words)
+print("Has exclamation:", has_exclamation)
+
