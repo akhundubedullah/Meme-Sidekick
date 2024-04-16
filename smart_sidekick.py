@@ -1,3 +1,6 @@
+from textblob import TextBlob 
+
+
 print("Hello, Meme Sidekick!")
 
 import random
@@ -31,3 +34,22 @@ has_exclamation = "!" in sentence   # Detect exclamation points
 print("Number of words:", num_words)
 print("Has exclamation:", has_exclamation)
 
+
+blob = TextBlob(sentence)
+sentiment = blob.sentiment.polarity  # Value between -1 (negative) and 1 (positive)
+
+if sentiment >= 0.5:
+    print("Seems like the user is feeling positive!")
+elif sentiment <= -0.5:
+    print("Seems like the user is feeling negative!")
+else:
+    print("Seems like the sentiment is neutral")
+
+keywords = {
+    "frustration": ["annoyed", "problem", "ugh", "why"],
+    "excitement": ["yay", "awesome", "love"],
+    "sarcasm": ["seriously", "obviously", "of course"],
+}
+for emotion, words in keywords.items():
+    if any(word in sentence.lower() for word in words):
+        print("Seems like the user is feeling", emotion)
