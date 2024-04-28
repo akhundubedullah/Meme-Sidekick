@@ -4,13 +4,10 @@ from textblob import TextBlob
 import random
 
 
-
-
 print("Hello, Meme Sidekick!")
 
 
 meme_template = input("Wite a Meme ") # Get meme template here
-
 
 meme_templates = [
     "Bad Luck Brian: [text]" ,
@@ -24,8 +21,12 @@ meme_templates = [
     "Nobody: [Silence] / [text]]", 
     "[Common phrase] / Me, taking it literally: [text]" 
     "When you finally [text]",
-    "Me as a programmer: [Expectation] / Me as a programmer: [Funny reality]"  
-] 
+    "Me as a programmer: [Expectation] / Me as a programmer: [Funny reality]",
+    # ... your existing templates
+    "When your [noun] does [silly action]: [text]",  # Template for absurdity
+    "Me: [normal activity] / My brain: [ridiculous alternative]",
+]  
+
 
 #chosen_template = random.choice(meme_templates)
 #final_meme = chosen_template.replace("[text]", sentence)  # Simple insertion 
@@ -33,6 +34,11 @@ meme_templates = [
 
 
 # Analysis
+def add_humorous_response(emotion):
+    if emotion == "frustration":
+        print("Whoa there! Easy on the keyboard smashing. Let's channel that rage into meme supremacy.")
+
+
 num_words = len(meme_template.split())  # Count the words
 has_exclamation = "!" in meme_template   # Detect exclamation points
 print("Number of words:", num_words)
@@ -57,9 +63,11 @@ keywords = {
 for emotion, words in keywords.items():
     if any(word in meme_template.lower() for word in words):
      print("Seems like the user is feeling", emotion)
+     add_humorous_response(emotion)   
+
 
 genai.configure(api_key="AIzaSyBFthjm8lUCTy42FxhCEq3ytate0O7WTjU") 
 model = genai.GenerativeModel('gemini-pro')
-prompt = meme_template  # Use the meme template directly
-response = model.generate_content(prompt)
-print(response.text)  
+funny_prompt = meme_template + ", make it 100x weirder,funnier and sarcastic and two line meme in single reply not like bottom or top not more than 20 words and without bad words"  # Adds a twist 
+response = model.generate_content(funny_prompt) 
+print(response.text) 
