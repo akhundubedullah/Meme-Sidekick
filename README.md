@@ -14,13 +14,6 @@ Need a hilarious meme caption? Craving a dose of AI-generated absurdity? Meme Si
 * **Gemini API:**  Powers the AI-fueled text generation and sentiment analysis.
 * **TextBlob:** Provides additional text analysis capabilities.
 
-## How to Run 
-
-1. **Get Your API Key:**  Sign up and obtain a Gemini API key from [https://beta.openai.com/account/api-keys](https://beta.openai.com/account/api-keys).
-2. **Install Dependencies:**  Run `pip install google.generativeai textblob` in your terminal.
-3. **Save the Code:**   Create a Python file (e.g., `meme_sidekick.py`) and paste the provided code.  
-4. **Run and Enjoy!**  Execute `python meme_sidekick.py` and follow the prompts.
-
 ## Example Interaction 
 
 **User Input:** My cat ate my homework.
