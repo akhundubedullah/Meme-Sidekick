@@ -3,7 +3,7 @@ import os
 from textblob import TextBlob 
 import random
 
-# Configuration (Make sure to add your real API key)
+
 genai.configure(api_key="AIzaSyBFthjm8lUCTy42FxhCEq3ytate0O7WTjU") 
 model = genai.GenerativeModel('gemini-pro')
 
