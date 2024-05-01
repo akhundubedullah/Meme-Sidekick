@@ -21,8 +21,6 @@ def generate_surprise_meme():
     meme = template.replace("[text]", funny_phrase)  
     print(meme)     
 
-
-
 meme_templates = [
     "Bad Luck Brian: [text]" ,
     "Success Kid: [text] ",
@@ -40,12 +38,6 @@ meme_templates = [
     "When your [noun] does [silly action]: [text]",  # Template for absurdity
     "Me: [normal activity] / My brain: [ridiculous alternative]",
 ]  
-
-
-#chosen_template = random.choice(meme_templates)
-#final_meme = chosen_template.replace("[text]", sentence)  # Simple insertion 
-#print(final_meme)
-
 
 # Analysis
 def add_humorous_response(emotion):
