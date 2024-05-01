@@ -3,26 +3,64 @@ import os
 from textblob import TextBlob 
 import random
 
+# Configuration (Make sure to add your real API key)
+genai.configure(api_key="AIzaSyBFthjm8lUCTy42FxhCEq3ytate0O7WTjU") 
+model = genai.GenerativeModel('gemini-pro')
 
-print("Hello, Meme Sidekick!")
+def main():
+    print("Hello, Meme Sidekick! Let's make some hilarious memes.")
 
+    while True:  # Keep the meme fun going!
+        user_word = input("Enter a single word: ")
+        meme_type = choose_meme_type()
 
-meme_template = input("Wite a Word : ") 
+        if meme_type == "surprise":
+            generate_surprise_meme(user_word)
+        elif meme_type == "custom":
+            generate_custom_meme(user_word)
+        else:
+            print("Let's try that again...")  # In case of errors]
 
+        another_meme = input("Want to make another meme? (yes/no): ").lower()
+        if another_meme != "yes":
+            break 
 
-def generate_surprise_meme():
+# Surprise Meme Generator
+def generate_surprise_meme(word):
     template = random.choice(meme_templates)
+    funny_prompt = f"Tell a joke about {word}."
+    meme_text = model.generate_content(funny_prompt).text
+    meme = template.replace("[text]", meme_text)
+    print(meme) 
 
-    # Use AI for a wacky phrase (tailor the prompt for extra absurdity)
-    prompt = "Describe a cat wearing a superhero cape and mismatched socks." 
-    response = model.generate_content(prompt)
-    funny_phrase = response.text 
+# Custom Meme Generator
+def generate_custom_meme(word):
+    analyze_sentiment(word) 
+    funny_prompt = f"{word} but make it 100x funnier, with a dash of sarcasm."
+    meme_text = model.generate_content(funny_prompt).text  
+    meme = choose_template(meme_text)  
+    print(meme)
 
-    meme = template.replace("[text]", funny_phrase)  
-    print(meme)     
+# Sentiment Analysis (Expanded)
+def analyze_sentiment(text):
+    blob = TextBlob(text)
+    sentiment = blob.sentiment.polarity  
 
+    if sentiment >= 0.5:
+        print("Whoa, someone's feeling positive! 😊")
+    elif sentiment <= -0.5:
+        print("Hang in there! Let's turn that frown upside down. 😉")
+    else:
+        print("Okay, keeping it neutral. 😎")
+
+# Choose the Right Template
+def choose_template(text):
+    # Here you could add logic to select a template based on sentiment!
+    return random.choice(meme_templates).replace("[text]", text)
+
+# Meme Templates
 meme_templates = [
-    "Bad Luck Brian: [text]" ,
+  "Bad Luck Brian: [text]" ,
     "Success Kid: [text] ",
     "One Does Not Simply: [text]" 
     # Hindi Templates
@@ -37,44 +75,16 @@ meme_templates = [
     # ... your existing templates
     "When your [noun] does [silly action]: [text]",  # Template for absurdity
     "Me: [normal activity] / My brain: [ridiculous alternative]",
-]  
+]
 
-# Analysis
-def add_humorous_response(emotion):
-    if emotion == "frustration":
-        print("Whoa there! Easy on the keyboard smashing. Let's channel that rage into meme supremacy.")
+def choose_meme_type():
+    choice = input("Want a 'surprise' meme or a 'custom' one? ").lower()
+    if choice in ["surprise", "s"]:
+        return "surprise"
+    elif choice in ["custom", "c"]:
+        return "custom"
+    else:
+        return None  # Signal an error
 
-
-num_words = len(meme_template.split())  # Count the words
-has_exclamation = "!" in meme_template   # Detect exclamation points
-print("Number of words:", num_words)
-print("Has exclamation:", has_exclamation)
-
-
-blob = TextBlob(meme_template)
-sentiment = blob.sentiment.polarity  # Value between -1 (negative) and 1 (positive)
-
-if sentiment >= 0.5:
-    print("Seems like the user is feeling positive!")
-elif sentiment <= -0.5:
-    print("Seems like the user is feeling negative!")
-else:
-    print("Seems like the sentiment is neutral")
-
-keywords = {
-    "frustration": ["annoyed", "problem", "ugh", "why"],
-    "excitement": ["yay", "awesome", "love"],
-    "sarcasm": ["seriously", "obviously", "of course"],
-}
-for emotion, words in keywords.items():
-    if any(word in meme_template.lower() for word in words):
-     print("Seems like the user is feeling", emotion)
-     add_humorous_response(emotion)   
-    
-genai.configure(api_key="AIzaSyBFthjm8lUCTy42FxhCEq3ytate0O7WTjU") 
-model = genai.GenerativeModel('gemini-pro')
-funny_prompt = meme_template + ", make it 100x joke,funnier and sarcastic and two line meme in single reply not like bottom or top not more than 10 words" 
-response = model.generate_content(funny_prompt) 
-print(response.text) 
-
-generate_surprise_meme()
+if __name__ == "__main__":
+    main()
