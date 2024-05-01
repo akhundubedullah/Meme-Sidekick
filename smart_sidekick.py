@@ -7,7 +7,7 @@ import random
 print("Hello, Meme Sidekick!")
 
 
-meme_template = input("Wite a Meme ") 
+meme_template = input("Wite a Word : ") 
 
 
 def generate_surprise_meme():
@@ -73,7 +73,8 @@ for emotion, words in keywords.items():
     
 genai.configure(api_key="AIzaSyBFthjm8lUCTy42FxhCEq3ytate0O7WTjU") 
 model = genai.GenerativeModel('gemini-pro')
-funny_prompt = meme_template + ", make it 100x weirder,funnier and sarcastic and two line meme in single reply not like bottom or top not more than 20 words and without bad words"  # Adds a twist 
+funny_prompt = meme_template + ", make it 100x joke,funnier and sarcastic and two line meme in single reply not like bottom or top not more than 10 words" 
 response = model.generate_content(funny_prompt) 
 print(response.text) 
 
+generate_surprise_meme()
