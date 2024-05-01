@@ -58,7 +58,7 @@ def choose_template(text):
     # Here you could add logic to select a template based on sentiment!
     return random.choice(meme_templates).replace("[text]", text)
 
-# Meme Templates
+
 meme_templates = [
   "Bad Luck Brian: [text]" ,
     "Success Kid: [text] ",
@@ -67,13 +67,13 @@ meme_templates = [
     "Aeyin ye kiya howa? [text]", 
     "Kiya mast joke mara re! [text]",
     "Chup re halkat! [text]",
-    # English Templates
+   #English Templates
     "Nobody: [Silence] / [text]]", 
     "[Common phrase] / Me, taking it literally: [text]" 
     "When you finally [text]",
     "Me as a programmer: [Expectation] / Me as a programmer: [Funny reality]",
-    # ... your existing templates
-    "When your [noun] does [silly action]: [text]",  # Template for absurdity
+   
+    "When your [noun] does [silly action]: [text]",  
     "Me: [normal activity] / My brain: [ridiculous alternative]",
 ]
 
