@@ -36,7 +36,7 @@ def generate_surprise_meme(word):
 # Custom Meme Generator
 def generate_custom_meme(word):
     analyze_sentiment(word) 
-    funny_prompt = f"{word} but make it 100x funnier, with a dash of sarcasm."
+    funny_prompt = f"{word} but make it 100x funnier, with a dash of sarcasm and less than 1 line."
     meme_text = model.generate_content(funny_prompt).text  
     meme = choose_template(meme_text)  
     print(meme)
@@ -66,15 +66,15 @@ meme_templates = [
     # Hindi Templates
     "Aeyin ye kiya howa? [text]", 
     "Kiya mast joke mara re! [text]",
-    "Chup re halkat! [text]",
+    "Chup re halkat![text]",
    #English Templates
     "Nobody: [Silence] / [text]]", 
     "[Common phrase] / Me, taking it literally: [text]" 
     "When you finally [text]",
     "Me as a programmer: [Expectation] / Me as a programmer: [Funny reality]",
    
-    "When your [noun] does [silly action]: [text]",  
-    "Me: [normal activity] / My brain: [ridiculous alternative]",
+    "When your [text] does [silly action]: [text]",  
+
 ]
 
 def choose_meme_type():
